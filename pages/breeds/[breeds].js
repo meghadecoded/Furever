@@ -5,7 +5,7 @@ export default function Breed() {
   const { breeds } = router.query;
   return (
     <div>
-      <h2>More About {breeds}s</h2>
+      <h2>More About {breeds}</h2>
     </div>
   );
 }
