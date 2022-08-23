@@ -13,6 +13,12 @@ const Navbar = ({ session }) => {
           <Link href="/">
             <li className={styles.name}>Home</li>
           </Link>
+          <Link href="/animals">
+            <li className={styles.name}>Find Pets</li>
+          </Link>
+          <Link href="/breeds">
+            <li className={styles.name}>Cat Breeds</li>
+          </Link>
 
           <button
             className={styles.buttons}
