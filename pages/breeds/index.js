@@ -2,16 +2,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "/styles/Breeds.module.css";
 
-export default function Breeds() {
+export default function ShowBreeds() {
   const [data, setData] = useState(null);
 
-  useEffect(function () {
+  function fetchBreedData(search) {
     setData("loading");
     const baseURL = "https://api.api-ninjas.com";
     const path = "/v1/cats?name=";
-    const breedName = "bengal";
-    const endPoint = baseURL + path + breedName;
-    console.log(endPoint);
+    //const breedName = "british";
+    const endPoint = baseURL + path + search;
     fetch(endPoint, {
       headers: { "X-Api-Key": "jk8POg2JZg7aeAk9+yAdZA==KlU5iC7SSW8URpDF" },
     })
@@ -21,20 +20,35 @@ export default function Breeds() {
       .then(function (info) {
         setData(info);
       })
-      .catch(function (e) {
+      .catch((e) => {
         return (
           <div>
-            <h2>Sorry - couldn't find that breed!</h2>
+            <h2>Sorry - couldnt find that breed!</h2>
             <h3>Did you make a typo or is there a new breed?</h3>
           </div>
         );
       });
-  }, []);
+  }
+
+  function handleSubmit() {
+    fetchBreedData("bengal");
+  }
+
+  // function handleInput(props) {
+  //   console.log(props.target.value);
+  // }
 
   if (data === null) {
+    //const [input, setInput] = useState("");
     return (
       <div>
-        <h3>Hasn't loaded yet!</h3>
+        <form className="searchTerm">
+          {/* <label>
+            Curious about a Cat Breed?
+            <input type="text" />
+          </label> */}
+          <input type="submit" onClick={handleSubmit} />
+        </form>
       </div>
     );
   } else if (data === "loading") {

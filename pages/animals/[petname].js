@@ -5,7 +5,7 @@ export default function Petprofile() {
   const { petname } = router.query;
   return (
     <div>
-      <h2>{petname}'s Profile Page</h2>
+      <h2>{petname} Profile Page</h2>
     </div>
   );
 }

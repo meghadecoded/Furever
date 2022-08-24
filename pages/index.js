@@ -1,50 +1,27 @@
-import { useState, useEffect } from "react";
-import { supabase } from "../utils/supabase";
+import styles from "../styles/About.module.css";
 
-export default function Home() {
-  const [animals, setAnimals] = useState([]);
-  const [animal, setAnimal] = useState({ petname: "", age: null, species: "" });
-  const { petname, age, species } = animal;
-
-  useEffect(() => {
-    fetchAnimals();
-  }, []);
-
-  async function fetchAnimals() {
-    const { data } = await supabase.from("animals").select();
-    setAnimals(data);
-  }
-
-  async function createAnimal() {
-    await supabase.from("animals").insert([{ petname, age, species }]).single();
-    setAnimal({ petname: "", age: "", species: "" });
-    fetchAnimals();
-  }
+export default function About() {
   return (
-    <div className="App">
-      <input
-        placeholder="Name of the animal"
-        value={petname}
-        onChange={(e) => setAnimal({ ...animal, petname: e.target.value })}
+    <div>
+      <h2>About Us</h2>
+      <p>
+        Furever is a platform for you to find your furry friend a forever home.
+      </p>
+      <h3>Our Inspirations</h3>
+      <img
+        src="images/arya.jpg"
+        alt="Our first cat Arya"
+        label="Arya"
+        id="ourcats"
+        className={styles.ourcats}
       />
-      <input
-        placeholder="Approx age in weeks"
-        value={age}
-        onChange={(e) => setAnimal({ ...animal, age: e.target.value })}
+      <img
+        src="images/mafia.jpg"
+        alt="Our second cat Mafia"
+        label="Mafia"
+        id="ourcats"
+        className={styles.ourcats}
       />
-      <input
-        placeholder="Dog, cat, rabbit, hamster"
-        value={species}
-        onChange={(e) => setAnimal({ ...animal, species: e.target.value })}
-      />
-      <button onClick={createAnimal}>Upload for Adoption</button>
-      {animals.map((animal) => (
-        <div key={animal.id}>
-          <h3>{animal.petname}</h3>
-          <h4>Species: {animal.species} </h4>
-          <h4>Age in weeks: {animal.age} </h4>
-        </div>
-      ))}
     </div>
   );
 }

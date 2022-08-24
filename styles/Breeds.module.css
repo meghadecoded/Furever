@@ -2,3 +2,8 @@
     width: 400px;
     margin: 10px;
 }
+
+.searchTerm {
+    text-align: center;
+    margin: 15px;
+}
